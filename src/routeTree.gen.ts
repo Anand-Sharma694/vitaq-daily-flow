@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AssessmentRouteImport } from './routes/assessment'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BusinessRouteImport } from './routes/business'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
@@ -44,6 +45,11 @@ const AuthRoute = AuthRouteImport.update({
 const BusinessRoute = BusinessRouteImport.update({
   id: '/business',
   path: '/business',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -83,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/assessment': typeof AssessmentRoute
   '/auth': typeof AuthRoute
   '/business': typeof BusinessRoute
+  '/dashboard': typeof DashboardRoute
   '/faq': typeof FaqRoute
   '/features': typeof FeaturesRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/assessment': typeof AssessmentRoute
   '/auth': typeof AuthRoute
   '/business': typeof BusinessRoute
+  '/dashboard': typeof DashboardRoute
   '/faq': typeof FaqRoute
   '/features': typeof FeaturesRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/assessment': typeof AssessmentRoute
   '/auth': typeof AuthRoute
   '/business': typeof BusinessRoute
+  '/dashboard': typeof DashboardRoute
   '/faq': typeof FaqRoute
   '/features': typeof FeaturesRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
     | '/assessment'
     | '/auth'
     | '/business'
+    | '/dashboard'
     | '/faq'
     | '/features'
     | '/how-it-works'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/assessment'
     | '/auth'
     | '/business'
+    | '/dashboard'
     | '/faq'
     | '/features'
     | '/how-it-works'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/assessment'
     | '/auth'
     | '/business'
+    | '/dashboard'
     | '/faq'
     | '/features'
     | '/how-it-works'
@@ -165,6 +177,7 @@ export interface RootRouteChildren {
   AssessmentRoute: typeof AssessmentRoute
   AuthRoute: typeof AuthRoute
   BusinessRoute: typeof BusinessRoute
+  DashboardRoute: typeof DashboardRoute
   FaqRoute: typeof FaqRoute
   FeaturesRoute: typeof FeaturesRoute
   HowItWorksRoute: typeof HowItWorksRoute
@@ -208,6 +221,13 @@ declare module '@tanstack/react-router' {
       path: '/business'
       fullPath: '/business'
       preLoaderRoute: typeof BusinessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -261,6 +281,7 @@ const rootRouteChildren: RootRouteChildren = {
   AssessmentRoute: AssessmentRoute,
   AuthRoute: AuthRoute,
   BusinessRoute: BusinessRoute,
+  DashboardRoute: DashboardRoute,
   FaqRoute: FaqRoute,
   FeaturesRoute: FeaturesRoute,
   HowItWorksRoute: HowItWorksRoute,
