@@ -8,7 +8,7 @@ export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
       { title: "Sign in to VITAQ" },
-      { name: "description", content: "Log in or create your VITAQ account to save your wellness score, habits and progress." },
+      { name: "description", content: "Log in or create your VITAQ account to save your wellness score, habits and progress." }
       { property: "og:title", content: "Sign in to VITAQ" },
       { property: "og:description", content: "Save your wellness score, habits and progress." },
       { property: "og:type", content: "website" },
