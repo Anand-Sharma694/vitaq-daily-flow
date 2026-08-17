@@ -1,5 +1,6 @@
 import express from "express";
 import { connectDatabase } from "./config/database.js";
+import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 const PORT = Number(process.env.PORT ?? 4000);
@@ -18,6 +19,8 @@ app.get("/api/v1/health", (_req, res) => {
     requestId: null,
   });
 });
+
+app.use("/api/v1/users", userRoutes);
 
 async function startServer(): Promise<void> {
   await connectDatabase();
