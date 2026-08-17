@@ -2,6 +2,7 @@ import express from "express";
 import { connectDatabase } from "./config/database.js";
 import userRoutes from "./routes/userRoutes.js";
 import healthMetricRoutes from "./routes/healthMetricRoutes.js";
+import healthProfileRoutes from "./routes/healthProfileRoutes.js";
 
 const app = express();
 const PORT = Number(process.env.PORT ?? 4000);
@@ -23,6 +24,7 @@ app.get("/api/v1/health", (_req, res) => {
 
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/health-metrics", healthMetricRoutes);
+app.use("/api/v1/health-profiles", healthProfileRoutes);
 
 async function startServer(): Promise<void> {
   await connectDatabase();
