@@ -1,4 +1,5 @@
 import express from "express";
+import { connectDatabase } from "./config/database.js";
 
 const app = express();
 const PORT = Number(process.env.PORT ?? 4000);
@@ -18,6 +19,15 @@ app.get("/api/v1/health", (_req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`LIVORA backend running on port ${PORT}`);
+async function startServer(): Promise<void> {
+  await connectDatabase();
+
+  app.listen(PORT, () => {
+    console.log(`LIVORA backend running on port ${PORT}`);
+  });
+}
+
+startServer().catch((error: unknown) => {
+  console.error("Failed to start LIVORA backend:", error);
+  process.exit(1);
 });
